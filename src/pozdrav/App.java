@@ -1,4 +1,4 @@
-package PROJEKT;
+package pozdrav;
 
 public class App {
 
