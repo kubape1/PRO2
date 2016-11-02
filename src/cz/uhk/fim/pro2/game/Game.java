@@ -9,6 +9,8 @@ public class Game {
 	public static void main(String[] args) {
 		MainFrame mainFrame = new MainFrame();		
 		mainFrame.setScreen(new HomeScreen(mainFrame));
+		
+		
 	}
 
 }
