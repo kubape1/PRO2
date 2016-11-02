@@ -11,6 +11,10 @@ public class ScoreScreen extends Screen {
 		super(mainFrame);
 
 		JButton jButtonBack = new JButton("BACK");
+		
+		
+		jButtonBack.setBounds(100, 400, 280, 50);
+
 
 		add(jButtonBack);
 		
