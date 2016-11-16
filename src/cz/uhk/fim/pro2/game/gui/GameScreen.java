@@ -7,16 +7,18 @@ import javax.swing.Timer;
 import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 
-
+import cz.uhk.fim.pro2.game.interfaces.WorldListener;
 import cz.uhk.fim.pro2.game.model.Bird;
 import cz.uhk.fim.pro2.game.model.Heart;
 import cz.uhk.fim.pro2.game.model.Tube;
 import cz.uhk.fim.pro2.game.model.World;
 
-public class GameScreen extends Screen {
+public class GameScreen extends Screen implements WorldListener {
 	
 	private long lastTime;
 	private Timer timer;
@@ -56,9 +58,11 @@ public class GameScreen extends Screen {
 					}
 			}
 		});
+		
+		
 
 		Bird bird = new Bird("Petr", 240, 400);
-		World world = new World(bird);
+		World world = new World(bird, this);
 
 		world.addTube(new Tube(400, 400, Color.GREEN));
 		world.addTube(new Tube(600, 300, Color.GREEN));
@@ -72,6 +76,14 @@ public class GameScreen extends Screen {
 		add(gameCanvas);
 
 		gameCanvas.setBounds(0, 0, MainFrame.WIDTH, MainFrame.HEIGHT);
+		
+		gameCanvas.addMouseListener(new MouseAdapter(){
+			
+			public void mousePressed(MouseEvent e) {
+				super.mousePressed(e);
+				bird.goUp();
+			}
+		});
 		
 		timer = new Timer(20,new ActionListener() {
 			
@@ -93,6 +105,24 @@ public class GameScreen extends Screen {
 			
 		System.out.println(world);
 
+	}
+
+	@Override
+	public void crashTube(Tube tube) {
+		
+		System.out.println("trubka");
+	}
+
+	@Override
+	public void crashHeart(Heart heart) {
+		
+		System.out.println("srdce");
+	}
+
+	@Override
+	public void outOF() {
+		
+		System.out.println("pryè");
 	}
 
 }
