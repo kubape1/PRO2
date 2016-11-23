@@ -11,9 +11,20 @@ public class Tube {
 	private float positionX;
 	private float height;
 	private Color color;
+	private boolean prolet;
 
-	
+
+	public boolean isProlet() {
+		return prolet;
+	}
+
+
+	public void setProlet(boolean prolet) {
+		this.prolet = prolet;
+	}
+
 	private static final int GAP = 200;
+	private static final int WIDTH = 50;
 	
 	public Tube(float positionX, float height, Color color) {
 		
@@ -23,6 +34,18 @@ public class Tube {
 		this.color = color;
 	}
 	
+	
+	public int getCenter(){
+		return (int) (height - GAP / 2.0);
+	}
+	
+	public int getMinX(){
+		return (int) (positionX - (WIDTH / 2));
+	}
+	
+	public int getMaxX(){
+		return (int) (positionX + (WIDTH / 2));
+	}
 
 	public float getPositionX() {
 		return positionX;
@@ -71,12 +94,12 @@ public class Tube {
 	}
 	
 	public Rectangle getTop(){
-		return  new Rectangle( (int) getPositionX() - 25, (int) (height),
+		return  new Rectangle( (int) getPositionX() - (WIDTH / 2), (int) (height),
 				50, (int) (MainFrame.HEIGHT-height));
 	}
 	
 	public Rectangle getBottom(){
-		return  new Rectangle( (int) getPositionX() - 25, 0,
+		return  new Rectangle( (int) getPositionX() - (WIDTH / 2) , 0,
 				50, (int) (height-GAP));
 	}
 

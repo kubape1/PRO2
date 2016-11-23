@@ -29,16 +29,26 @@ public class World {
 		if(bird.isOutOf())
 			worldListener.outOF();
 
-		
-		for(Tube tube : tubes){
+		for (Tube tube : tubes) {
 			tube.update(deltaTime);
-			
-			if(bird.collideWith(tube))
-				worldListener.crashTube(tube);
-		
+
+			if (bird.collideWith(tube)) {
+			tube.setProlet(true);	
+			worldListener.crashTube(tube);
+				;
+			} else {
+				if(bird.getPositionX() > tube.getMinX() &&
+				   bird.getPositionX() > tube.getMaxX() &&
+				   tube.isProlet() == false){
+					bird.addPoint();
+					tube.setProlet(true);
+					System.out.println(bird.getScore()); 
+				}
+					
+			}
+
 		}
-		
-		
+
 		for(Heart heart : hearts){
 			
 			heart.update(deltaTime);

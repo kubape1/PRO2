@@ -8,19 +8,26 @@ import cz.uhk.fim.pro2.game.gui.MainFrame;
 
 public class Bird {
 
+	
+	public static final int DEFAULT_SCORE = 0;
+	public static final int DEFAULT_LIVES = 3;
+	public static final int JUMP = 650;
+	
 	private String name;
 	private float positionX, positionY;
 	private float speed;
 	private int lives;
 	private static final int GRAVITY = 300;
-	private static final int JUMP = 650;
+
+	private int score;
 
 	public Bird(String name, float positomX, float positionY) {
 		this.name = name;
 		this.positionY = positionY;
 		this.positionX = positomX;
-		speed = 0;
-		lives = 3;
+		speed = JUMP / 2;
+		lives = DEFAULT_LIVES;
+		score = DEFAULT_SCORE;
 
 	}
 	
@@ -66,6 +73,22 @@ public class Bird {
 		speed = JUMP;
 			
 	}
+	
+	public void addLive(){
+		lives++;
+	}
+	
+	public void removeLive(){
+		lives--;
+	}
+	
+	public void addPoint(){
+		score++;
+	}
+
+	public int getScore() {
+		return score;
+	}
 
 	public float getPositionX() {
 		return positionX;
@@ -109,26 +132,19 @@ public class Bird {
 
 	public String getName() {
 		return name;
-	}
-	
-	public void catchHeart(){		
-		
-	}
+	}	
 	
 	public void die(){
 		
 	}
 	
-	public void addLive(){
-		
-	}
-	
-	public void removeLive(){
-		
-	}
-	
 	public String toString(){
 		return "["  + name + ", " + positionX + "; " + positionY + "]" ;
+	}
+
+	public void catchHeart() {
+		
+		
 	}
 
 }
