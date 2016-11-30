@@ -1,5 +1,8 @@
 package cz.uhk.fim.pro2.game.model;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,10 +22,15 @@ public class World {
 	private List<Heart> hearts;
 	private WorldListener worldListener;
 	
-	private static final int SPEED = 100; 
+	private static final int SPEED = 150; 
+	private static final int SPACE_BETWEEN_TUBES = 300;
+	private static final int SPACE_BETWEEN_HEARTS = 450;
+	private boolean generated;
 	
 	public void update(float deltaTime) {
 		
+		if(generated)
+			regenerate();
 		
 		bird.update(deltaTime);
 		
@@ -37,8 +45,7 @@ public class World {
 			worldListener.crashTube(tube);
 				;
 			} else {
-				if(bird.getPositionX() > tube.getMinX() &&
-				   bird.getPositionX() > tube.getMaxX() &&
+				if(bird.getPositionX() > tube.getMaxX() &&
 				   tube.isProlet() == false){
 					bird.addPoint();
 					tube.setProlet(true);
@@ -54,7 +61,7 @@ public class World {
 			heart.update(deltaTime);
 			
 			if(bird.collideWith(heart))
-				worldListener.crashHeart(heart);
+				worldListener.catchHeart(heart);
 		}
 		
 		
@@ -62,7 +69,39 @@ public class World {
 		
 	}
 	
+
+	public void generateRandom() {
+		for (int i = 0; i < 3; i++) {
+			addTube(new Tube(500 + i * SPACE_BETWEEN_TUBES,Tube.getRandomHeight(),Color.GREEN));
+			
+		}
+		addHeart(new Heart( 500 + SPACE_BETWEEN_HEARTS,Heart.getRandomY()));
+		
+		generated = true;
+
+	}
 	
+	private void regenerate() {
+		for (Tube tube : tubes) {
+			if (tube.getPositionX() < -100){
+				
+				tube.setPositionX(tube.getPositionX() + tubes.size()* SPACE_BETWEEN_TUBES);
+				tube.setHeight(Tube.getRandomHeight());
+				tube.setProlet(false);
+				
+				
+			}
+		}
+		
+		for(Heart heart : hearts) {
+			if (heart.getPositionX() < -100){
+				heart.setPositionX(heart.getPositionX() + (hearts.size() +  3) * SPACE_BETWEEN_HEARTS);
+				heart.setPositionY(Heart.getRandomY());
+			}
+
+		}
+	}
+
 	public void addTube(Tube tube){
 		tubes.add(tube);		
 	}

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
+import cz.uhk.fim.pro2.game.gui.GameCanvas;
 import cz.uhk.fim.pro2.game.gui.MainFrame;
 
 public class Bird {
@@ -11,7 +12,7 @@ public class Bird {
 	
 	public static final int DEFAULT_SCORE = 0;
 	public static final int DEFAULT_LIVES = 3;
-	public static final int JUMP = 650;
+	public static final int JUMP = 550;
 	
 	private String name;
 	private float positionX, positionY;
@@ -66,7 +67,10 @@ public class Bird {
 	
 	public boolean isOutOf(){
 		Rectangle rectangle = getRectangle();
-		return rectangle.getMaxY() > MainFrame.HEIGHT || rectangle.getMinY() < 0;
+		int upLimit = GameCanvas.UP_BOUND;
+		int downLimit = MainFrame.HEIGHT - GameCanvas.DOWN_BOUND;
+		
+		return rectangle.getMaxY() > downLimit || rectangle.getMinY() < upLimit;
 				}
 	
 	public void goUp(){

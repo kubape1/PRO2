@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -74,13 +75,15 @@ public class GameScreen extends Screen implements WorldListener {
 
 		bird = new Bird("Petr", 240, 400);
 		World world = new World(bird, this);
+		
+		world.generateRandom();
 
-		world.addTube(new Tube(400, 400, Color.GREEN));
+		/*world.addTube(new Tube(400, 400, Color.GREEN));
 		world.addTube(new Tube(600, 300, Color.GREEN));
 		world.addTube(new Tube(800, 500, Color.GREEN));
 
 		world.addHeart(new Heart(500, 400));
-		world.addHeart(new Heart(700, 600));
+		world.addHeart(new Heart(700, 600));*/
 
 		GameCanvas gameCanvas = new GameCanvas(world);
 
@@ -149,6 +152,7 @@ public class GameScreen extends Screen implements WorldListener {
 	public void catchHeart(Heart heart){
 		heart.setPositionY(-100);
 		bird.catchHeart();
+		bird.addLive();
 	}
-
+	
 }

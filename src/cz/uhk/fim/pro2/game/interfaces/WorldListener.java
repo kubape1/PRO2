@@ -7,7 +7,9 @@ public interface WorldListener {
 	
 	void crashTube(Tube tube);
 	
-	void crashHeart(Heart heart);
+	void catchHeart(Heart heart);
 	
 	void outOF();
+
+	void crashHeart(Heart heart);
 }
