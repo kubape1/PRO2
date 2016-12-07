@@ -18,9 +18,9 @@ public class ScoreScreen extends Screen {
 		for(int i = 0; i < ScoreManager.getList().size(); i++ ){
 			int score = ScoreManager.getList().get(i);
 			
-			ScoreItem scoreitem = new ScoreItem(i + 1, score);
-			scoreitem.setBounds(50,200 + i* 50,300,50);
-			add(scoreitem);
+			ScoreItem scoreItem = new ScoreItem(i + 1, score);
+			scoreItem.setBounds(50,200 + i* 50,300,50);
+			add(scoreItem);
 		}
 
 		JButton jButtonBack = new JButton("BACK");
