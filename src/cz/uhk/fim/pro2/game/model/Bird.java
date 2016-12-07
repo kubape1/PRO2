@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 
 import cz.uhk.fim.pro2.game.gui.GameCanvas;
+import cz.uhk.fim.pro2.game.gui.GameScreen;
 import cz.uhk.fim.pro2.game.gui.MainFrame;
 
 public class Bird {
@@ -138,8 +139,10 @@ public class Bird {
 		return name;
 	}	
 	
-	public void die(){
-		
+	public boolean isAlive(){
+		if (getLives() <= 0)
+			return false;
+		return true;
 	}
 	
 	public String toString(){

@@ -112,6 +112,16 @@ public class GameScreen extends Screen implements WorldListener {
 				jLabelScore.setText("Score: " + bird.getScore());
 				
 				
+				if(bird.isAlive()==false){
+					timer.stop();
+					FinishScreen finishscreen = new FinishScreen(mainFrame,world);
+					mainFrame.setScreen(finishscreen);				
+					
+				}
+
+				
+				
+				
 				gameCanvas.repaint();
 				
 				lastTime = currentMills;
