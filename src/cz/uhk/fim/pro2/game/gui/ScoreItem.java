@@ -17,13 +17,15 @@ public class ScoreItem extends JPanel {
 			jLabelPosition.setFont(new Font("Arial", Font.PLAIN, 40));
 			jLabelPosition.setBounds(0, 0, 100, 50);
 			
-			jLabelName = new JLabel(String.valueOf(score));
-			jLabelName.setFont(new Font("Arial", Font.PLAIN, 40));
-			jLabelName.setBounds(120, 0, 200, 50);
+			jLabelScore = new JLabel(String.valueOf(score));
+			jLabelScore.setFont(new Font("Arial", Font.PLAIN, 40));
+			jLabelScore.setBounds(0, 0, 200, 50);
 			
-			add(jLabelName);
+		
 			add(jLabelPosition);
+			add(jLabelScore);
 
+			
 			
 			
 			

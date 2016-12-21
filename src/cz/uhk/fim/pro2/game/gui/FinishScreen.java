@@ -18,7 +18,7 @@ public class FinishScreen extends Screen {
 		
 		scoreLabel = new JLabel("Your score is " + world.getBird().getScore() + "!");
 		scoreLabel.setFont(new Font("Arial", Font.PLAIN, 40));
-		scoreLabel.setBounds(20, 20, 500, 50);
+		scoreLabel.setBounds(100, 400, 500, 50);
 		
 		jButtonReplay = new JButton("Replay");
 		jButtonMenu = new JButton("Menu");

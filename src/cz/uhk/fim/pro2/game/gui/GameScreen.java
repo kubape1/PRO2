@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
+import cz.uhk.fim.pro2.game.ScoreManager;
 import cz.uhk.fim.pro2.game.interfaces.WorldListener;
 import cz.uhk.fim.pro2.game.model.Bird;
 import cz.uhk.fim.pro2.game.model.Heart;
@@ -25,14 +26,15 @@ public class GameScreen extends Screen implements WorldListener {
 	private long lastTime;
 	private Timer timer;
 	private Bird bird;
+	
 
 	public GameScreen(MainFrame mainFrame) {
 		super(mainFrame);
 
-		JButton jButtonBack = new JButton("Back");
+		JButton jButtonBack = new JButton("BACK");
 		JButton jButtonPause = new JButton("||");
 
-		jButtonBack.setBounds(20, 20, 60, 60);
+		jButtonBack.setBounds(20, 20, 100, 60);
 		jButtonPause.setBounds(400, 20, 60, 60);
 
 		jButtonBack.setFont(new Font("Arial", Font.PLAIN, 15));
@@ -41,14 +43,21 @@ public class GameScreen extends Screen implements WorldListener {
 		
 		JLabel jLabelLives = new JLabel();
 		JLabel jLabelScore = new JLabel();
+		JLabel jLabelLevel = new JLabel();
 		
-		jLabelLives.setBounds(100,20,80,50);
+		//jLabelLevel.setText("Level " + bird.getScore() % 10);
+		//jLabelLevel.setVisible(false);
+		
+		
+		jLabelLives.setBounds(150,20,80,50);
 		jLabelScore.setBounds(240,20,80,50);
 		
 		add(jLabelLives);
 		add(jLabelScore);
+		add(jLabelLevel);
 		add(jButtonBack);
 		add(jButtonPause);
+
 
 		jButtonBack.addActionListener(new ActionListener() {
 			@Override
@@ -115,7 +124,9 @@ public class GameScreen extends Screen implements WorldListener {
 				if(bird.isAlive()==false){
 					timer.stop();
 					FinishScreen finishscreen = new FinishScreen(mainFrame,world);
-					mainFrame.setScreen(finishscreen);				
+					mainFrame.setScreen(finishscreen);
+					ScoreManager.addScore(bird.getScore());
+
 					
 				}
 
@@ -154,7 +165,7 @@ public class GameScreen extends Screen implements WorldListener {
 	public void outOF() {
 		
 		System.out.println("pryè");
-		bird.setSpeed(bird.JUMP);
+		bird.setSpeed(Bird.JUMP);
 		bird.setPositionY(MainFrame.HEIGHT / 2);
 		bird.removeLive();
 	}

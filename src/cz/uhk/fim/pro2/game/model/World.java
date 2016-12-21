@@ -3,9 +3,14 @@ package cz.uhk.fim.pro2.game.model;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Timer;
+
+import cz.uhk.fim.pro2.game.gui.GameScreen;
 import cz.uhk.fim.pro2.game.interfaces.WorldListener;
 
 public class World {
@@ -22,12 +27,23 @@ public class World {
 	private List<Heart> hearts;
 	private WorldListener worldListener;
 	
-	private static final int SPEED = 150; 
+	private static int SPEED = 150; 
 	private static final int SPACE_BETWEEN_TUBES = 300;
 	private static final int SPACE_BETWEEN_HEARTS = 450;
 	private boolean generated;
 	
 	public void update(float deltaTime) {
+		
+		
+		/*Timer timer = new Timer(20,new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+			
+		});*/
+
 		
 		if(generated)
 			regenerate();
@@ -48,6 +64,12 @@ public class World {
 				if(bird.getPositionX() > tube.getMaxX() &&
 				   tube.isProlet() == false){
 					bird.addPoint();
+					if(bird.getScore() % 10 == 0){
+						//addSpeed();
+						//timer.start();
+						
+					}
+
 					tube.setProlet(true);
 					System.out.println(bird.getScore()); 
 				}
@@ -55,6 +77,7 @@ public class World {
 			}
 
 		}
+		
 
 		for(Heart heart : hearts){
 			
@@ -143,6 +166,11 @@ public class World {
 
 	public static int getSpeed() {
 		return SPEED;
+	}
+
+	public void addSpeed() {
+
+		SPEED += 125;
 	}
 
 }

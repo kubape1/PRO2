@@ -3,6 +3,7 @@ package cz.uhk.fim.pro2.game.model;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.util.Random;
 
 import cz.uhk.fim.pro2.game.gui.MainFrame;
@@ -76,12 +77,12 @@ public class Tube {
 		this.color = color;
 	}
 	
-	public void paint(Graphics g) {
+	public void paint(Graphics g, BufferedImage image) {
 		g.setColor(Color.GREEN);
 		
 		Rectangle rectangleB = getBottom();
 		Rectangle rectangleT = getTop();
-
+		/*
 		g.fillRect( (int) rectangleB.getX(),
 					(int) rectangleB.getY(),
 					(int) rectangleB.getWidth(),
@@ -90,7 +91,21 @@ public class Tube {
 		g.fillRect( (int) rectangleT.getX(),
 					(int) rectangleT.getY(),
 					(int) rectangleT.getWidth(),
-					(int) rectangleT.getHeight());
+					(int) rectangleT.getHeight());*/
+		
+		g.drawImage(image,
+				(int) rectangleB.getX(),
+				(int) rectangleB.getY(),
+				(int) rectangleB.getWidth(),
+				(int) rectangleB.getHeight(),
+				null);
+		
+		g.drawImage(image,
+				(int) rectangleT.getX(),
+				(int) rectangleT.getY(),
+				(int) rectangleT.getWidth(),
+				(int) rectangleT.getHeight(),
+				null);
 	}
 	
 	public void update(float deltaTime){
